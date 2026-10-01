@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oefening week 1</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+    max-width: 44rem;
+    font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: #1a1a1a;
+    background: #fff;
+  }
+  header { border-bottom: 2px solid #1a1a1a; padding-bottom: 12px; margin-bottom: 28px; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .meta { font-size: 0.85rem; color: #666; }
+  h2 {
+    font-size: 1.05rem; margin: 32px 0 10px;
+    padding-bottom: 5px; border-bottom: 1px solid #ddd;
+  }
+  h3 { font-size: 0.95rem; margin: 20px 0 6px; }
+  p { margin: 0 0 10px; }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.88em; background: #f2f2f0;
+    padding: 1px 4px; border-radius: 3px;
+  }
+  pre {
+    background: #f7f7f5; border-left: 3px solid #bbb;
+    padding: 10px 12px; overflow-x: auto; margin: 0 0 12px;
+  }
+  pre code { background: none; padding: 0; }
+  table { border-collapse: collapse; width: 100%; margin: 0 0 14px; font-size: 0.92rem; }
+  th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid #e2e2e0; }
+  th { background: #f7f7f5; font-weight: 600; }
+  ol.taken { list-style: none; counter-reset: t; padding: 0; margin: 0; }
+  ol.taken > li {
+    counter-increment: t; position: relative;
+    padding: 9px 0 9px 58px; border-bottom: 1px solid #ededeb;
+  }
+  ol.taken > li::before {
+    content: counter(t); position: absolute; left: 22px; top: 9px;
+    font-weight: 600; color: #555;
+  }
+  ol.taken > li::after {
+    content: ""; position: absolute; left: 0; top: 11px;
+    width: 13px; height: 13px; border: 1.5px solid #999; border-radius: 2px;
+  }
+  .let-op {
+    background: #fbf7e8; border-left: 3px solid #c9a227;
+    padding: 10px 12px; margin: 14px 0;
+  }
+  .hint { font-size: 0.9rem; color: #555; margin-top: 4px; }
+  .notes { margin-top: 8px; }
+  .notes div { border-bottom: 1px solid #ddd; height: 26px; }
+  footer { margin-top: 36px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 0.82rem; color: #666; }
+  @media print {
+    body { padding: 0; max-width: none; font-size: 11pt; }
+    @page { margin: 18mm; }
+    h2 { break-after: avoid; }
+    ol.taken > li, .let-op, pre, table { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Oefening week 1: Python-basis</h1>
+  <p class="meta">Fase 0 · Fundament · variabelen, datatypes, lijsten, dictionaries, <code>if</code>, <code>for</code></p>
+</header>
+
+<p><strong>Doel:</strong> je kunt de vier basistypen benoemen, het verschil tussen een lijst en een
+dictionary uitleggen in termen van hoe je een element ophaalt, en een lus met een voorwaarde schrijven.</p>
+
+<h2>Begrippen om bij de hand te hebben</h2>
+
+<h3>De vier datatypen</h3>
+<table>
+  <thead><tr><th>Type</th><th>Voorbeeld</th><th>Waarvoor</th></tr></thead>
+  <tbody>
+    <tr><td><code>int</code></td><td><code>5</code></td><td>hele getallen</td></tr>
+    <tr><td><code>float</code></td><td><code>12.50</code></td><td>kommagetallen</td></tr>
+    <tr><td><code>str</code></td><td><code>"Albert Heijn"</code></td><td>tekst, tussen quotes</td></tr>
+    <tr><td><code>bool</code></td><td><code>True</code> / <code>False</code></td><td>waar of niet waar</td></tr>
+  </tbody>
+</table>
+<p>Python kiest het type zelf. Met <code>type(x)</code> vraag je wat hij koos. Dat is je eerste
+controle als iets zich vreemd gedraagt.</p>
+
+<div class="let-op">
+  <strong>Let op:</strong> <code>12.50</code> en <code>"12,50"</code> zijn iets heel anders.
+  Het eerste kun je optellen, het tweede is tekst. Nederlandse bankexports gebruiken een komma,
+  dus dit wordt in fase 1 je hoofdpijn.
+</div>
+
+<h3>Lijst tegenover dictionary</h3>
+<table>
+  <thead><tr><th></th><th>Lijst</th><th>Dictionary</th></tr></thead>
+  <tbody>
+    <tr><td>Schrijf je als</td><td><code>["brood", "kaas"]</code></td><td><code>{"brood": 2.50}</code></td></tr>
+    <tr><td>Element ophalen met</td><td>een <strong>positie</strong>: <code>lijst[0]</code></td><td>een <strong>sleutel</strong>: <code>dict["brood"]</code></td></tr>
+    <tr><td>Tellen begint bij</td><td>nul</td><td>niet van toepassing</td></tr>
+    <tr><td>Volgorde onthouden</td><td>ja</td><td>ja, sinds Python 3.7</td></tr>
+  </tbody>
+</table>
+<p>Het verschil is dus niet "geordend of niet", maar <strong>waarmee je erbij komt</strong>:
+positie of sleutel.</p>
+
+<h3><code>for</code> en <code>if</code></h3>
+<pre><code>for bedrag in bedragen:
+    print(bedrag)
+
+if totaal &gt; 50:
+    print("boven de 50")</code></pre>
+<p>Let op de dubbele punt en de indentatie. In Python bepaalt witruimte wat binnen de lus of de
+voorwaarde valt. Dat is de fout die je de eerste week het vaakst maakt.</p>
+
+<h2>De opdracht</h2>
+<p>Schrijf dit in <code>oefeningen/01_basis.py</code> en draai het met
+<code>uv run oefeningen/01_basis.py</code>. Experimenteren mag in <code>klad.ipynb</code>,
+maar het eindresultaat van week 1 is een script.</p>
+
+<ol class="taken">
+  <li>Maak een <strong>lijst</strong> met vijf omschrijvingen van uitgaven, als tekst.</li>
+  <li>Maak een <strong>dictionary</strong> die elke omschrijving aan een bedrag koppelt.</li>
+  <li>Print het <strong>derde item</strong> uit de lijst.
+    <div class="hint">Hint: tellen begint bij nul. Welk getal heb je dus nodig?</div></li>
+  <li>Print het bedrag van één omschrijving, via de dictionary.</li>
+  <li>Print van beide het type met <code>type()</code>.</li>
+  <li>Probeer ook <code>prijzen[1]</code> op je dictionary. <strong>Voorspel eerst wat er gebeurt, draai het dan.</strong>
+    <div class="hint">Dit geeft een foutmelding, en dat is de bedoeling. Lees hem: zegt Python dat de
+    sleutel niet bestaat, of dat je iets verkeerds probeert? Dat onderscheid is het hele punt van deze opdracht.</div></li>
+  <li>Schrijf een <code>for</code>-lus die alle bedragen bij elkaar optelt, en print het totaal.
+    <div class="hint">Loop je door de lijst of door de dictionary? Bij een dictionary levert
+    <code>for</code> je standaard de <em>sleutels</em>. Zoekterm voor de waarden: <code>.values()</code></div></li>
+  <li>Schrijf een <code>if</code> die print of het totaal boven de 50 euro ligt of niet.</li>
+</ol>
+
+<h2>Werkafspraak</h2>
+<p>Schrijf het zelf, ook als het lelijk wordt. Loop je vast op een foutmelding, onderzoek die dan
+eerst 15 tot 20 minuten zelf: lees de traceback van onder naar boven, kijk welk type fout het is en
+welke regel wordt genoemd. Kom daarna met wat je probeerde en wat er stond.</p>
+
+<h2>Documentatie om zelf op te zoeken</h2>
+<table>
+  <thead><tr><th>Onderwerp</th><th>Waar</th></tr></thead>
+  <tbody>
+    <tr><td>Lijsten</td><td>Python-tutorial, hoofdstuk 3.1.3 en 5.1</td></tr>
+    <tr><td>Dictionaries</td><td>Python-tutorial, hoofdstuk 5.5</td></tr>
+    <tr><td><code>for</code> en <code>if</code></td><td>Python-tutorial, hoofdstuk 4.1 en 4.2</td></tr>
+  </tbody>
+</table>
+<p>Te vinden op <code>docs.python.org/3/tutorial</code>. Leer de weg in deze tutorial kennen, want
+je gaat er dit hele jaar naar terug.</p>
+
+<h2>Aantekeningen</h2>
+<div class="notes">
+  <div></div><div></div><div></div><div></div><div></div><div></div>
+</div>
+
+<footer>
+  Opgave voor fase 0, week 1. Het antwoord op punt 6 hoort in je logboek onder "Geleerd".
+</footer>
+
+</body>
+</html>
