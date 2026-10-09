@@ -51,7 +51,7 @@ Fase 0 tot en met 4. Van Python-basis tot modellen en een RAG-toepassing die in 
 
 **Opdrachten**
 
-- [ ] Werkomgeving: VS Code, Python met uv, Git en een GitHub-account
+- [x] Werkomgeving: VS Code, Python met uv, Git en een GitHub-account
 - [ ] Tien kleine scripts die bestanden inlezen, bewerken en wegschrijven
 - [ ] Foutmeldingen zelfstandig lezen en oplossen, met debugger en logging
 - [ ] `ruff` als formatter en linter, draaiend op al je scripts
@@ -76,7 +76,7 @@ Fase 0 tot en met 4. Van Python-basis tot modellen en een RAG-toepassing die in 
 
 **Weekplan**
 
-- [ ] **Week 1: Werkomgeving en Python-basis.** Installeer VS Code, uv en Git; zet automatische codesuggesties in je editor uit. Maak een GitHub-account en je eerste repository. Zet het project op met `uv init` en begrijp wat `.venv` en `uv.lock` doen. Leer variabelen, datatypes, lijsten, dictionaries, `if` en `for`. *Resultaat:* Repository met een eerste script en README.
+- [x] **Week 1: Werkomgeving en Python-basis.** Installeer VS Code, uv en Git; zet automatische codesuggesties in je editor uit. Maak een GitHub-account en je eerste repository. Zet het project op met `uv init` en begrijp wat `.venv` en `uv.lock` doen. Leer variabelen, datatypes, lijsten, dictionaries, `if` en `for`. *Resultaat:* Repository met een eerste script en README.
 - [ ] **Week 2: Functies, modules en bestanden.** Functies met argumenten en returnwaarden, eigen modules importeren, `pathlib` en de `csv`-module. Scripts 1 tot 3: regels tellen, rijen filteren, totalen per categorie. *Resultaat:* Drie scripts, elk met een eigen commit.
 - [ ] **Week 3: Foutmeldingen en debuggen.** Lees tracebacks: welke regel, welk type, van onder naar boven. Print-debugging, de debugger in VS Code met breakpoints, en `logging` in plaats van `print`. Daarna `try/except` en bewust kiezen welke fouten je opvangt. Scripts 4 en 5: datums omzetten, CSV's samenvoegen. *Resultaat:* Vijf scripts; je kunt een onbekende foutmelding zelf terugbrengen tot de regel die hem veroorzaakt.
 - [ ] **Week 4: Opgeruimde code en Git-werkwijze.** `ruff` toevoegen als formatter en linter, één keer over al je scripts, en begrijpen waarom hij klaagt. Werk voor het eerst met een branch en een pull request. *Resultaat:* Alle scripts ruff-schoon; eerste pull request samengevoegd.

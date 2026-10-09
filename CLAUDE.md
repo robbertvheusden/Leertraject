@@ -11,8 +11,8 @@ Instructies voor Claude Code in deze repository. Lees dit bij elke sessie.
 ## Huidige stand
 
 - **Fase:** 0 (Fundament), 8 weken, weken 1 t/m 8
-- **Week:** 1
-- **Repository:** nog niet aangemaakt; dat is de eerste taak van week 1
+- **Week:** 2
+- **Repository:** https://github.com/robbertvheusden/Leertraject
 
 Je werkt dit bij tijdens het afsluiten van een sessie, na mijn akkoord. Staat hier iets anders dan wat ik zeg, volg dan wat ik zeg en wijs me op het verschil.
 
@@ -26,7 +26,7 @@ Je werkt dit bij tijdens het afsluiten van een sessie, na mijn akkoord. Staat hi
 
 ### Als ik zeg "afsluiten"
 
-1. Stel een logboekentry op volgens het format in `LOGBOEK.md`. Vraag me om het veld "Geleerd" zelf in één of twee zinnen te formuleren; schrijf dat niet voor me.
+1. Stel een logboekentry op volgens het format in `LOGBOEK.md`. Vul ook het veld "Geleerd" in, in één of twee zinnen, op basis van wat er in de sessie is blijven hangen.
 2. Stel wijzigingen voor in de herhaallijst volgens de spelregels bovenaan `LOGBOEK.md`: onderwerpen waar ik moeite mee had erbij, onderwerpen met `reeks: 2` eraf, en nooit meer dan zes op de lijst.
 3. Stel voor welke vinkjes in `LEERPLAN.md` af kunnen en of de huidige stand verandert.
 4. Toon alles eerst. Schrijf pas na mijn akkoord.
