@@ -45,6 +45,7 @@ Hoofdregel: tijdens het leren ben je docent, geen uitvoerder. Pas als ik iets be
 
 - Schrijf geen oplossingscode en wijzig geen bestanden, tenzij ik expliciet zeg "schrijf het maar" of "pas het aan". Uitzondering: `LOGBOEK.md`, de vinkjes in `LEERPLAN.md` en de huidige stand in dit bestand, via het afsluitritueel en na mijn akkoord.
 - Geef hints in stappen. Eerst een vraag of een richting; pas als ik erom vraag meer detail; volledige code alleen op verzoek.
+- Ook als ik iets meerdere keren verkeerd aanpak: blijf bij hints. Geen stappenplan, geen opsomming van wijzigingen die ik moet maken, geen gedeeltelijk antwoord. Benoem wat er niet klopt en waar ik moet kijken, en laat de rest aan mij. Het antwoord of de code geef je alleen als ik er expliciet om vraag.
 - Bij een foutmelding: vraag eerst wat ik al geprobeerd heb. Leg uit waarom de fout ontstaat. Laat mij de oplossing schrijven.
 - Bij een review: benoem wat er mis is of beter kan en waarom, met een verwijzing naar de regel. Geen herschreven versie, tenzij ik die vraag.
 - Vraag ik of een fase klaar is: toets het eindcriterium uit `LEERPLAN.md` en stel me controlevragen. Wees eerlijk als het nog niet zo is.
@@ -82,9 +83,15 @@ Ook in latere fasen geldt: bij een onderwerp dat nieuw voor me is, val je terug 
 - Data naar de cloud is een aparte afweging, niet gedekt door `.gitignore`. Vanaf fase 4 gaat er data naar Azure en vanaf fase 7 naar OneLake. Vraag me daar expliciet naar voordat ik de eerste resource aanmaak.
 - Elke fase krijgt een sectie in `README.md`: wat ik bouwde, welke keuzes, wat ik leerde.
 
-## Projectstructuur (groeit per fase)
+## Repositories en structuur
 
-Deze repository heet `Leertraject/`. De leerbestanden staan in de wortel, het uitgavenproject krijgt vanaf fase 1 een eigen submap. Eén repository voor alles, zodat je voortgang in één Git-geschiedenis staat.
+Niet alles in één repository. Deze map is het werkboek, de projecten worden losse repositories.
+
+Reden: één repository betekent één `pyproject.toml` en één venv. Over een jaar zouden Polars, Dagster, Streamlit, PySpark en LanceDB daar samen in zitten, en dan kun je in fase 3 geen afgebakend Docker-image meer bouwen. Daarnaast leest een losse projectrepository beter als portfolio.
+
+### `Leertraject` (deze repository)
+
+Het werkboek: het plan, de voortgang en de oefeningen van fase 0.
 
 ```
 Leertraject/
@@ -92,27 +99,40 @@ Leertraject/
 ├── LEERPLAN.md
 ├── LOGBOEK.md
 ├── README.md
-├── oefeningen/               fase 0, de tien scripts
-└── uitgaven-pipeline/        vanaf fase 1
-    ├── data/                 in .gitignore
-    │   ├── raw/              fase 1
-    │   ├── clean/            fase 1, gepartitioneerd in 5
-    │   └── mart/             fase 5
-    ├── rules/categorieen.csv fase 1
-    ├── src/
-    │   ├── ingest.py         fase 1
-    │   ├── clean.py          fase 1
-    │   └── categorize.py     fase 1, model in 2
-    ├── ml/                   fase 2
-    ├── orchestration/        fase 3 (Dagster)
-    ├── Dockerfile            fase 3
-    ├── compose.yaml          fase 3
-    ├── tests/                fase 1 en verder
-    ├── dbt/                  fase 5
-    ├── lakehouse/            fase 6
-    └── fabric/               fase 7
+├── .gitignore
+├── .vscode/settings.json     interpreter op .venv
+└── oefeningen/               fase 0, de tien scripts
 ```
 
-De RAG-toepassing uit fase 4 krijgt een eigen map `wkr-assistent/` naast `uitgaven-pipeline/`. GitHub Actions komen in `.github/workflows/` in de wortel.
+### `uitgaven-pipeline` (eigen repository, vanaf week 9)
 
-In fase 0 bestaan alleen `CLAUDE.md`, `LEERPLAN.md`, `LOGBOEK.md`, `README.md` en `oefeningen/`. De rest maak je pas als de fase erom vraagt.
+Het hoofdproject. Loopt door fase 1, 2, 3, 5, 6 en 7, met eigen `pyproject.toml` en eigen `uv.lock`.
+
+```
+uitgaven-pipeline/
+├── data/                     in .gitignore, nooit committen
+│   ├── raw/                  fase 1
+│   ├── clean/                fase 1, gepartitioneerd in 5
+│   └── mart/                 fase 5
+├── rules/categorieen.csv     fase 1
+├── src/
+│   ├── ingest.py             fase 1
+│   ├── clean.py              fase 1
+│   └── categorize.py         fase 1, model in 2
+├── ml/                       fase 2
+├── orchestration/            fase 3 (Dagster)
+├── Dockerfile                fase 3
+├── compose.yaml              fase 3
+├── tests/                    fase 1 en verder
+├── dbt/                      fase 5
+├── lakehouse/                fase 6
+├── fabric/                   fase 7
+├── .github/workflows/        fase 7
+└── README.md                 een sectie per fase
+```
+
+### `wkr-assistent` (eigen repository, vanaf week 34)
+
+De RAG-toepassing uit fase 4. Los product, dus losse repository.
+
+Elke projectrepository krijgt zijn eigen README met een sectie per fase: wat ik bouwde, welke keuzes, wat ik leerde. De README van `Leertraject` beschrijft het traject en verwijst naar de projectrepositories.
